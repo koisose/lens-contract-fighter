@@ -8,7 +8,7 @@ import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
 import { ipfsClient } from "~~/utils/simpleNFT";
 import nftsMetadata from "~~/utils/simpleNFT/nftsMetadata";
-
+import { LensCard } from "~~/components/LensCard";
 const MyNFTs: NextPage = () => {
   const { address: connectedAddress, isConnected, isConnecting } = useAccount();
   const [currentTokenMintCount, setCurrentTokenMintCount] = useState(0);
@@ -47,20 +47,15 @@ const MyNFTs: NextPage = () => {
       <div className="flex items-center flex-col pt-10">
         <div className="px-5">
           <h1 className="text-center mb-8">
-            <span className="block text-4xl font-bold">My NFTs</span>
+            <span className="block text-4xl font-bold">My Fighter</span>
           </h1>
         </div>
       </div>
-      <div className="flex justify-center">
-        {!isConnected || isConnecting ? (
-          <RainbowKitCustomConnectButton />
-        ) : (
-          <button className="btn btn-secondary" onClick={handleMintItem}>
-            Mint NFT
-          </button>
-        )}
-      </div>
-      <MyHoldings />
+      
+
+    <div className="flex flex-wrap gap-4 my-8 px-5 justify-center">
+     <LensCard/>
+    </div>
     </>
   );
 };
