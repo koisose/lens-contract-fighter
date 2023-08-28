@@ -21,11 +21,21 @@ cd packages/nextjs
 vercel .
 ```
 
-Demo
+Action offchain rollup address
 
 ```
-https://nextjs-koisose.vercel.app/
+0x89e6979880f43cc42a1b2ee915895c61e123fc87d687ff88b0f18d7832f1b508
 ```
+
+Attestor Address
+
+```
+0x2e725ef367550116f5d337faec42bbc14b867a9b
+```
+
+Demo
+
+https://nextjs-koisose.vercel.app/
 
 # How this work
 
@@ -52,6 +62,15 @@ https://mumbai.polygonscan.com/tx/0xcff22efbf44acb09df9d204cbdd66a126353cfdce601
 as you can see there is an event called `Winner` it will check whos the winner based on who has the bigger number calculated via the smart contract you can see the logic here:
 
 https://github.com/koisose/lens-contract-fighter/blob/main/packages/hardhat/contracts/Fighter.sol#L80
+
+there is also event `Attack` to catch what number is picked by opponent and us this is what happen when we click fight button:
+
+![image](https://github.com/koisose/lens-contract-fighter/assets/17805677/d7006c74-5f27-4536-bce6-9c6a47758447)
+
+You can also see record in the `My Fighter` tab
+
+![image](https://github.com/koisose/lens-contract-fighter/assets/17805677/3afed44b-905d-4981-89b2-9f26f3f5e7cf)
+
 
 
 
