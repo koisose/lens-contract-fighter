@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         Fighter: {
-          address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+          address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
           abi: [
             {
               inputs: [
@@ -164,6 +164,44 @@ const contracts = {
             },
             {
               anonymous: false,
+              inputs: [
+                {
+                  indexed: false,
+                  internalType: "address",
+                  name: "pair",
+                  type: "address",
+                },
+                {
+                  indexed: false,
+                  internalType: "uint256",
+                  name: "value",
+                  type: "uint256",
+                },
+              ],
+              name: "Attack",
+              type: "event",
+            },
+            {
+              anonymous: false,
+              inputs: [
+                {
+                  indexed: false,
+                  internalType: "address",
+                  name: "pair",
+                  type: "address",
+                },
+                {
+                  indexed: false,
+                  internalType: "address",
+                  name: "pair2",
+                  type: "address",
+                },
+              ],
+              name: "Draws",
+              type: "event",
+            },
+            {
+              anonymous: false,
               inputs: [],
               name: "EIP712DomainChanged",
               type: "event",
@@ -179,9 +217,9 @@ const contracts = {
                 },
                 {
                   indexed: false,
-                  internalType: "string",
+                  internalType: "address",
                   name: "pair",
-                  type: "string",
+                  type: "address",
                 },
                 {
                   indexed: false,
@@ -191,6 +229,19 @@ const contracts = {
                 },
               ],
               name: "ErrorReceived",
+              type: "event",
+            },
+            {
+              anonymous: false,
+              inputs: [
+                {
+                  indexed: false,
+                  internalType: "address",
+                  name: "pair",
+                  type: "address",
+                },
+              ],
+              name: "Loser",
               type: "event",
             },
             {
@@ -261,9 +312,9 @@ const contracts = {
                 },
                 {
                   indexed: false,
-                  internalType: "string",
+                  internalType: "address",
                   name: "pair",
-                  type: "string",
+                  type: "address",
                 },
                 {
                   indexed: false,
@@ -355,9 +406,9 @@ const contracts = {
               inputs: [
                 {
                   indexed: false,
-                  internalType: "uint256",
-                  name: "_value",
-                  type: "uint256",
+                  internalType: "address",
+                  name: "pair",
+                  type: "address",
                 },
               ],
               name: "Winner",
@@ -384,25 +435,6 @@ const contracts = {
                   internalType: "bytes32",
                   name: "",
                   type: "bytes32",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "",
-                  type: "address",
-                },
-              ],
-              name: "addressToString",
-              outputs: [
-                {
-                  internalType: "string",
-                  name: "",
-                  type: "string",
                 },
               ],
               stateMutability: "view",
@@ -458,26 +490,8 @@ const contracts = {
                   name: "_address",
                   type: "address",
                 },
-                {
-                  internalType: "address",
-                  name: "_address2",
-                  type: "address",
-                },
               ],
-              name: "fight",
-              outputs: [],
-              stateMutability: "nonpayable",
-              type: "function",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "_address",
-                  type: "address",
-                },
-              ],
-              name: "getAddressToString",
+              name: "getFighter",
               outputs: [
                 {
                   internalType: "string",
@@ -566,19 +580,6 @@ const contracts = {
                 },
               ],
               stateMutability: "view",
-              type: "function",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "bytes",
-                  name: "malformedData",
-                  type: "bytes",
-                },
-              ],
-              name: "malformedRequest",
-              outputs: [],
-              stateMutability: "nonpayable",
               type: "function",
             },
             {
@@ -844,48 +845,6 @@ const contracts = {
               type: "function",
             },
             {
-              inputs: [
-                {
-                  internalType: "uint256",
-                  name: "_lower",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "_upper",
-                  type: "uint256",
-                },
-              ],
-              name: "random",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
-              inputs: [],
-              name: "randomizeFight",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
               inputs: [],
               name: "renounceOwnership",
               outputs: [],
@@ -913,9 +872,9 @@ const contracts = {
             {
               inputs: [
                 {
-                  internalType: "string",
-                  name: "profileId",
-                  type: "string",
+                  internalType: "address",
+                  name: "enemy",
+                  type: "address",
                 },
               ],
               name: "request",
@@ -983,12 +942,12 @@ const contracts = {
             {
               inputs: [
                 {
-                  internalType: "string",
-                  name: "_str",
-                  type: "string",
+                  internalType: "address",
+                  name: "phatAttestor",
+                  type: "address",
                 },
               ],
-              name: "setAddressToString",
+              name: "setAttestor",
               outputs: [],
               stateMutability: "nonpayable",
               type: "function",
@@ -996,12 +955,12 @@ const contracts = {
             {
               inputs: [
                 {
-                  internalType: "address",
-                  name: "phatAttestor",
-                  type: "address",
+                  internalType: "string",
+                  name: "_str",
+                  type: "string",
                 },
               ],
-              name: "setAttestor",
+              name: "setFighter",
               outputs: [],
               stateMutability: "nonpayable",
               type: "function",
@@ -1068,7 +1027,7 @@ const contracts = {
       name: "polygonMumbai",
       contracts: {
         Fighter: {
-          address: "0xB1fa361eEBB742CFBc628A6d24aB6e9fa0000176",
+          address: "0xc9Fd605c7C593bA9b28Bc884e3621DE175768299",
           abi: [
             {
               inputs: [
@@ -1227,6 +1186,44 @@ const contracts = {
             },
             {
               anonymous: false,
+              inputs: [
+                {
+                  indexed: false,
+                  internalType: "address",
+                  name: "pair",
+                  type: "address",
+                },
+                {
+                  indexed: false,
+                  internalType: "uint256",
+                  name: "value",
+                  type: "uint256",
+                },
+              ],
+              name: "Attack",
+              type: "event",
+            },
+            {
+              anonymous: false,
+              inputs: [
+                {
+                  indexed: false,
+                  internalType: "address",
+                  name: "pair",
+                  type: "address",
+                },
+                {
+                  indexed: false,
+                  internalType: "address",
+                  name: "pair2",
+                  type: "address",
+                },
+              ],
+              name: "Draws",
+              type: "event",
+            },
+            {
+              anonymous: false,
               inputs: [],
               name: "EIP712DomainChanged",
               type: "event",
@@ -1242,9 +1239,9 @@ const contracts = {
                 },
                 {
                   indexed: false,
-                  internalType: "string",
+                  internalType: "address",
                   name: "pair",
-                  type: "string",
+                  type: "address",
                 },
                 {
                   indexed: false,
@@ -1254,6 +1251,19 @@ const contracts = {
                 },
               ],
               name: "ErrorReceived",
+              type: "event",
+            },
+            {
+              anonymous: false,
+              inputs: [
+                {
+                  indexed: false,
+                  internalType: "address",
+                  name: "pair",
+                  type: "address",
+                },
+              ],
+              name: "Loser",
               type: "event",
             },
             {
@@ -1324,9 +1334,9 @@ const contracts = {
                 },
                 {
                   indexed: false,
-                  internalType: "string",
+                  internalType: "address",
                   name: "pair",
-                  type: "string",
+                  type: "address",
                 },
                 {
                   indexed: false,
@@ -1418,9 +1428,9 @@ const contracts = {
               inputs: [
                 {
                   indexed: false,
-                  internalType: "uint256",
-                  name: "_value",
-                  type: "uint256",
+                  internalType: "address",
+                  name: "pair",
+                  type: "address",
                 },
               ],
               name: "Winner",
@@ -1447,25 +1457,6 @@ const contracts = {
                   internalType: "bytes32",
                   name: "",
                   type: "bytes32",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "",
-                  type: "address",
-                },
-              ],
-              name: "addressToString",
-              outputs: [
-                {
-                  internalType: "string",
-                  name: "",
-                  type: "string",
                 },
               ],
               stateMutability: "view",
@@ -1521,26 +1512,8 @@ const contracts = {
                   name: "_address",
                   type: "address",
                 },
-                {
-                  internalType: "address",
-                  name: "_address2",
-                  type: "address",
-                },
               ],
-              name: "fight",
-              outputs: [],
-              stateMutability: "nonpayable",
-              type: "function",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "_address",
-                  type: "address",
-                },
-              ],
-              name: "getAddressToString",
+              name: "getFighter",
               outputs: [
                 {
                   internalType: "string",
@@ -1629,19 +1602,6 @@ const contracts = {
                 },
               ],
               stateMutability: "view",
-              type: "function",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "bytes",
-                  name: "malformedData",
-                  type: "bytes",
-                },
-              ],
-              name: "malformedRequest",
-              outputs: [],
-              stateMutability: "nonpayable",
               type: "function",
             },
             {
@@ -1934,9 +1894,9 @@ const contracts = {
             {
               inputs: [
                 {
-                  internalType: "string",
-                  name: "profileId",
-                  type: "string",
+                  internalType: "address",
+                  name: "enemy",
+                  type: "address",
                 },
               ],
               name: "request",
@@ -2004,12 +1964,12 @@ const contracts = {
             {
               inputs: [
                 {
-                  internalType: "string",
-                  name: "_str",
-                  type: "string",
+                  internalType: "address",
+                  name: "phatAttestor",
+                  type: "address",
                 },
               ],
-              name: "setAddressToString",
+              name: "setAttestor",
               outputs: [],
               stateMutability: "nonpayable",
               type: "function",
@@ -2017,12 +1977,12 @@ const contracts = {
             {
               inputs: [
                 {
-                  internalType: "address",
-                  name: "phatAttestor",
-                  type: "address",
+                  internalType: "string",
+                  name: "_str",
+                  type: "string",
                 },
               ],
-              name: "setAttestor",
+              name: "setFighter",
               outputs: [],
               stateMutability: "nonpayable",
               type: "function",
