@@ -2,7 +2,7 @@
 
 Lens Consumer Contract
 
-https://mumbai.polygonscan.com/address/0xc9fd605c7c593ba9b28bc884e3621de175768299
+https://mumbai.polygonscan.com/address/0x9Bd7AFde187a8A21EABE0D71658892EAB6f9aeee
 
 How to deploy contract
 
@@ -13,11 +13,12 @@ yarn deploy --network polygonMumbai
 How to deploy frontend
 
 ```
-yarn vercel:yolo
+cd packages/nextjs
+vercel .
 ```
 
 Demo
 
 ```
-https://nextjs-5nqpfwzqy-koisose.vercel.app/
+https://nextjs-koisose.vercel.app/
 ```

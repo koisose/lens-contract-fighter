@@ -27,7 +27,15 @@ contract Fighter is PhatRollupAnchor, Ownable {
     constructor(address phatAttestor) {
         _grantRole(PhatRollupAnchor.ATTESTOR_ROLE, phatAttestor);
     }
-
+function getWin(address _address) public view returns(uint) {
+        return winning[_address];
+    }
+function getLose(address _address) public view returns(uint) {
+        return losing[_address];
+    }
+function getDraw(address _address) public view returns(uint) {
+        return draw[_address];
+    }
     function setAttestor(address phatAttestor) public onlyOwner {
         _grantRole(PhatRollupAnchor.ATTESTOR_ROLE, phatAttestor);
     }

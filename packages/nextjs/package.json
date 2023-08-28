@@ -19,6 +19,7 @@
     "@rainbow-me/rainbowkit": "^0.12.15",
     "@uniswap/sdk": "^3.0.3",
     "daisyui": "^2.31.0",
+    "deta": "^1.2.0",
     "ethers": "^5.0.0",
     "kubo-rpc-client": "^3.0.1",
     "next": "^13.1.6",

@@ -1027,7 +1027,7 @@ const contracts = {
       name: "polygonMumbai",
       contracts: {
         Fighter: {
-          address: "0xc9Fd605c7C593bA9b28Bc884e3621DE175768299",
+          address: "0x9Bd7AFde187a8A21EABE0D71658892EAB6f9aeee",
           abi: [
             {
               inputs: [
@@ -1513,12 +1513,50 @@ const contracts = {
                   type: "address",
                 },
               ],
+              name: "getDraw",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "_address",
+                  type: "address",
+                },
+              ],
               name: "getFighter",
               outputs: [
                 {
                   internalType: "string",
                   name: "",
                   type: "string",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "_address",
+                  type: "address",
+                },
+              ],
+              name: "getLose",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
                 },
               ],
               stateMutability: "view",
@@ -1557,6 +1595,25 @@ const contracts = {
                   internalType: "bytes",
                   name: "",
                   type: "bytes",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "_address",
+                  type: "address",
+                },
+              ],
+              name: "getWin",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
                 },
               ],
               stateMutability: "view",

@@ -4,42 +4,36 @@ import { useAccount } from "wagmi";
 import { MetaHeader } from "~~/components/MetaHeader";
 import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { MyHoldings } from "~~/components/simpleNFT";
-import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { useScaffoldContractWrite,useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 import { notification } from "~~/utils/scaffold-eth";
 import { ipfsClient } from "~~/utils/simpleNFT";
 import nftsMetadata from "~~/utils/simpleNFT/nftsMetadata";
-import { LensCard } from "~~/components/LensCard";
+import { LensCardi } from "~~/components/LensCardi";
 const MyNFTs: NextPage = () => {
   const { address: connectedAddress, isConnected, isConnecting } = useAccount();
   const [currentTokenMintCount, setCurrentTokenMintCount] = useState(0);
-
-  const { writeAsync: mintItem } = useScaffoldContractWrite({
-    contractName: "YourCollectible",
-    functionName: "mintItem",
-    args: [connectedAddress, ""],
+  const { data: fighter } = useScaffoldContractRead({
+  contractName: "Fighter",
+  functionName: "getFighter",
+    args: [connectedAddress],
+});
+  const { data: win } = useScaffoldContractRead({
+    contractName: "Fighter",
+    functionName: "getWin",
+    args: [connectedAddress],
+  });
+  const { data: lose } = useScaffoldContractRead({
+    contractName: "Fighter",
+    functionName: "getLose",
+    args: [connectedAddress],
+  });
+  const { data: draw } = useScaffoldContractRead({
+    contractName: "Fighter",
+    functionName: "getDraw",
+    args: [connectedAddress],
   });
 
-  const handleMintItem = async () => {
-    // circle back to the zero item if we've reached the end of the array
-    const currentTokenMetaData = nftsMetadata[currentTokenMintCount % nftsMetadata.length];
-    const notificationId = notification.loading("Uploading to IPFS");
-    try {
-      const uploadedItem = await ipfsClient.add(JSON.stringify(currentTokenMetaData));
 
-      // First remove previous loading notification and then show success notification
-      notification.remove(notificationId);
-      notification.success("Metadata uploaded to IPFS");
-
-      await mintItem({
-        args: [connectedAddress, uploadedItem.path],
-      });
-
-      setCurrentTokenMintCount(prevCount => prevCount + 1);
-    } catch (error) {
-      notification.remove(notificationId);
-      console.error(error);
-    }
-  };
 
   return (
     <>
@@ -54,8 +48,40 @@ const MyNFTs: NextPage = () => {
       
 
     <div className="flex flex-wrap gap-4 my-8 px-5 justify-center">
-     <LensCard/>
+      {fighter && <LensCardi id={fighter}/>}
+
     </div>
+    <center>Record</center>
+    <div className="flex flex-wrap gap-4 my-8 px-5 justify-center">
+
+      <div className="overflow-x-auto shadow-lg">
+        <table className="table table-zebra w-full">
+          <thead>
+            <tr>
+              <th className="bg-primary">Win</th>
+              <th className="bg-primary">Lose</th>
+              <th className="bg-primary">Draw</th>
+            </tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td  className="text-center">
+                  {win?.toString()}
+                </td>
+                <td  className="text-center">
+                  {lose?.toString()}
+                </td>
+                <td  className="text-center">
+                  {draw?.toString()}
+                </td>
+              </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     </>
   );
 };

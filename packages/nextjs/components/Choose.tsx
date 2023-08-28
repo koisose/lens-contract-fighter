@@ -12,19 +12,47 @@ import { LensCard } from "~~/components/LensCard";
 const FAUCET_ACCOUNT_INDEX = 0;
 
 const provider = getLocalProvider(localhost);
+async function fetchGraphQL(query, variables = {}) {
+  const response = await fetch('https://api-mumbai.lens.dev/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query, variables }),
+  });
 
-/**
- * Faucet modal which lets you send ETH to any address.
- */
+  // Parse the response as JSON
+  return await response.json();
+}
+
+
 export const Choose = () => {
-  const [loading, setLoading] = useState(false);
-  const [inputAddress, setInputAddress] = useState("");
-  const [faucetAddress, setFaucetAddress] = useState("");
-  const [sendValue, setSendValue] = useState("");
 
-  const { chain: ConnectedChain } = useNetwork();
-  const signer = provider?.getSigner(FAUCET_ACCOUNT_INDEX);
-  const faucetTxn = useTransactor(signer);
+  const [inputAddress, setInputAddress] = useState("");
+  const [profile, setProfile] = useState(null);
+  async function fetchProfile() {
+    const query = `
+ query Profile{
+  profile(request:{handle:"${inputAddress}.test"}){
+    stats{totalFollowers}
+    id
+    handle
+ picture{  ... on MediaSet {
+      original{url}
+    }}
+  }
+
+}
+  `;
+
+    const response = await fetchGraphQL(query);
+
+    // Check if request was successful
+  if (!response.data) {
+    setProfile(null)
+  } else {
+
+    setProfile(response.data);
+  }
+  }
 
 
 
@@ -58,12 +86,15 @@ export const Choose = () => {
               />
              
               <button
+                onClick={fetchProfile}
                 className={`h-10 btn btn-primary btn-sm px-2 rounded-full space-x-3 `}
                
               >
                 <span>Search</span>
               </button>
-              <LensCard use={true}/>
+            
+              {inputAddress && profile && <LensCard profile={profile} use={true}/>}
+
             </div>
           </div>
         </label>

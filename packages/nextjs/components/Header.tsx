@@ -51,12 +51,7 @@ export const Header = () => {
           My Fighter
         </NavLink>
       </li>
-      <li>
-        <NavLink href="/transfers">
-          <AcademicCapIcon className="h-4 w-4" />
-          Leaderboard
-        </NavLink>
-      </li>
+     
       
       <li>
         <NavLink href="/debug">
@@ -64,12 +59,7 @@ export const Header = () => {
           Debug Contracts
         </NavLink>
       </li>
-      <li>
-        <NavLink href="/blockexplorer">
-          <MagnifyingGlassIcon className="h-4 w-4" />
-          Block Explorer
-        </NavLink>
-      </li>
+     
     </>
   );
 
