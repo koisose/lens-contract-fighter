@@ -57,18 +57,7 @@ export const Header = () => {
           Leaderboard
         </NavLink>
       </li>
-      <li>
-        <NavLink href="/ipfsUpload">
-          <ArrowUpTrayIcon className="h-4 w-4" />
-          IPFS Upload
-        </NavLink>
-      </li>
-      <li>
-        <NavLink href="/ipfsDownload">
-          <ArrowDownTrayIcon className="h-4 w-4" />
-          IPFS Download
-        </NavLink>
-      </li>
+      
       <li>
         <NavLink href="/debug">
           <BugAntIcon className="h-4 w-4" />

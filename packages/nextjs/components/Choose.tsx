@@ -26,51 +26,7 @@ export const Choose = () => {
   const signer = provider?.getSigner(FAUCET_ACCOUNT_INDEX);
   const faucetTxn = useTransactor(signer);
 
-  useEffect(() => {
-    const getFaucetAddress = async () => {
-      try {
-        if (provider) {
-          const accounts = await provider.listAccounts();
-          setFaucetAddress(accounts[FAUCET_ACCOUNT_INDEX]);
-        }
-      } catch (error) {
-        notification.error(
-          <>
-            <p className="font-bold mt-0 mb-1">Cannot connect to local provider</p>
-            <p className="m-0">
-              - Did you forget to run <code className="italic bg-base-300 text-base font-bold">yarn chain</code> ?
-            </p>
-            <p className="mt-1 break-normal">
-              - Or you can change <code className="italic bg-base-300 text-base font-bold">targetNetwork</code> in{" "}
-              <code className="italic bg-base-300 text-base font-bold">scaffold.config.ts</code>
-            </p>
-          </>,
-        );
-        console.error("⚡️ ~ file: Faucet.tsx:getFaucetAddress ~ error", error);
-      }
-    };
-    getFaucetAddress();
-  }, []);
 
-  const sendETH = async () => {
-    try {
-      setLoading(true);
-      await faucetTxn({ to: inputAddress, value: ethers.utils.parseEther(sendValue) });
-      setLoading(false);
-      setInputAddress("");
-      setSendValue("");
-    } catch (error) {
-      const parsedError = getParsedEthersError(error);
-      console.error("⚡️ ~ file: Faucet.tsx:sendETH ~ error", error);
-      notification.error(parsedError);
-      setLoading(false);
-    }
-  };
-
-  // Render only on local chain
-  if (!ConnectedChain || ConnectedChain.id !== hardhat.id) {
-    return null;
-  }
 
   return (
     <div>

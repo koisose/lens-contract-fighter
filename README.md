@@ -2,7 +2,7 @@
 
 Lens Consumer Contract
 
-https://mumbai.polygonscan.com/address/0xb1fa361eebb742cfbc628a6d24ab6e9fa0000176
+https://mumbai.polygonscan.com/address/0xc9fd605c7c593ba9b28bc884e3621de175768299
 
 How to deploy contract
 

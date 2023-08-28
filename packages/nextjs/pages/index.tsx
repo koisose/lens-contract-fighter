@@ -54,7 +54,7 @@ const Home: NextPage = () => {
                 🌟 Choose your lens profile and fight against each other using that lens profile 🌟
               </p>
             </div>
-            <button onClick={() => writeAsync()}>panda</button>
+            
 <Choose/>
             <div className="flex flex-wrap gap-4 my-8 px-5 justify-center">
 
