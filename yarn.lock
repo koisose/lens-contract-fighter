@@ -1762,6 +1762,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@openzeppelin/contracts@npm:4.8.3":
+  version: 4.8.3
+  resolution: "@openzeppelin/contracts@npm:4.8.3"
+  checksum: aea130d38d46840c5cbe3adbaa9a7ac645e4bd66ad3f3baf2fa78588c408d1a686170b3408c9e2e5e05530fba22ecdc00d7efb6b27852a8b29f91accbc0af255
+  languageName: node
+  linkType: hard
+
 "@openzeppelin/contracts@npm:^4.9.3":
   version: 4.9.3
   resolution: "@openzeppelin/contracts@npm:4.9.3"
@@ -1971,6 +1978,7 @@ __metadata:
     "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13"
     "@nomiclabs/hardhat-etherscan": ^3.1.0
     "@openzeppelin/contracts": ^4.9.3
+    "@tableland/evm": ^4.3.0
     "@typechain/ethers-v5": ^10.1.0
     "@typechain/hardhat": ^6.1.3
     "@types/eslint": ^8
@@ -2342,6 +2350,15 @@ __metadata:
   dependencies:
     tslib: ^2.4.0
   checksum: 273fd3f3fc461a92f3790cc551ea054745c6d6959afbe1232e6d7aa1c722bbc114d308aab96bef5c78fc0303c85c7b472ef00e2253251cc89737f3b1af56e5a5
+  languageName: node
+  linkType: hard
+
+"@tableland/evm@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "@tableland/evm@npm:4.3.0"
+  dependencies:
+    "@openzeppelin/contracts": 4.8.3
+  checksum: 59c837e88ffde21c1031b2e6262ba69f2e8cdb5682ba966128dbd2c19c57ea1f10f13277556c3b79eb4c29abc4f98343805840abb40073b452cf860a146c76b5
   languageName: node
   linkType: hard
 
